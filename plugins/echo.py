@@ -243,7 +243,7 @@ async def echo(bot, update):
             format_ext = response_json["ext"]
 
             cb_string_video = "{}|{}|{}|{}".format(
-                "video", format_id, format_ext, "DL" randem)
+                "video", format_id, format_ext, "DL", randem)
             inline_keyboard.append([
                 InlineKeyboardButton(
                     "🎬 Video",
