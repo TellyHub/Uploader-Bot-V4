@@ -238,18 +238,18 @@ async def echo(bot, update):
                     callback_data=(cb_string_video).encode("UTF-8")
                 )
             ])
-            # TODO: :\
+            
         break
 
 
 
-        reply_markup = InlineKeyboardMarkup(inline_keyboard)
+    reply_markup = InlineKeyboardMarkup(inline_keyboard)
         #await chk.delete(True)
-        await bot.send_message(
-            chat_id=update.chat.id,
-            text=Translation.FORMAT_SELECTION,
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML,
-            reply_to_message_id=update.id
-        )
+    await bot.send_message(
+        chat_id=update.chat.id,
+        text=Translation.FORMAT_SELECTION,
+        reply_markup=reply_markup,
+        parse_mode=enums.ParseMode.HTML,
+        reply_to_message_id=update.id
+    )
 
