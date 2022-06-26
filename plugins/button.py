@@ -156,14 +156,15 @@ async def youtube_dl_call_back(bot, update):
         command_to_exec = [
             "yt-dlp",
             "-c",
+            "--merge-output-format",
             "--geo-bypass",
             "--embed-metadata",
             "--clean-info-json",
             "--allow-dynamic-mpd",
             "--embed-subs",
             "-f",
-            "--check-all-formats",
-            #youtube_dl_format,
+            
+            youtube_dl_format,
             "--hls-prefer-native",
             youtube_dl_url,
             "-o",
