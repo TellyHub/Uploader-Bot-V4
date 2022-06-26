@@ -179,6 +179,10 @@ async def echo(bot, update):
                     format_string = formats.get("format")
                 if "DASH" in format_string.upper():
                     continue
+                format_ext = formats.get("ext")
+                approx_file_size = ""
+                if "filesize" in formats:
+                    approx_file_size = humanbytes(formats["filesize"])
                 n_ue_sc = bool("video only" in format_string)
                 scneu = "DL" if not n_ue_sc else "XM"
                 dipslay_str_uon = " " + format_string + " (" + format_ext.upper() + ") " + approx_file_size + " "
