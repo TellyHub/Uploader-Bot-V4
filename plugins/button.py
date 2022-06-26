@@ -157,7 +157,7 @@ async def youtube_dl_call_back(bot, update):
             "yt-dlp",
             "-c",
             "--geo-bypass",
-            "--recode-video", "mp4", "-k",
+            "--embed-metadata",
             "--clean-info-json",
             "--ignore-no-formats-error",
             "--embed-subs",
