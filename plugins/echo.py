@@ -179,16 +179,13 @@ async def echo(bot, update):
                     format_string = formats.get("format")
                 if "DASH" in format_string.upper():
                     continue
-                    
-             
-                format_ext = formats.get("ext")
-                approx_file_size = ""
-                if "filesize" in formats:
-                    approx_file_size = humanbytes(formats["filesize"])
+                n_ue_sc = bool("video only" in format_string)
+                scneu = "DL" if not n_ue_sc else "XM"
+                dipslay_str_uon = " " + format_string + " (" + format_ext.upper() + ") " + approx_file_size + " "
                 cb_string_video = "{}|{}|{}|{}".format(
-                    "video", format_id, format_ext, randem)
-                cb_string_file = "{}|{}|{}|{}".format(
-                    "file", format_id, format_ext, randem)
+                    "video", format_id, format_ext, scneu, randem)         
+             
+                
                 if format_string is not None and not "audio only" in format_string:
                     ikeyboard = [
                         InlineKeyboardButton(
