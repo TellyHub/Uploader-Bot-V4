@@ -216,44 +216,29 @@ async def echo(bot, update):
                             )
                         ]
                 inline_keyboard.append(ikeyboard)
-                
-
             if duration is not None:
-                cb_string_64 = "{}|{}|{}|{}".format("audio", "64k", "mp3", randem)
-                cb_string_128 = "{}|{}|{}|{}".format("audio", "128k", "mp3", randem)
-                cb_string = "{}|{}|{}|{}".format("audio", "320k", "mp3", randem)
                 inline_keyboard.append([
                     InlineKeyboardButton(
-                        "🎵 ᴍᴘ𝟹 " + "(" + "64 ᴋʙᴘs" + ")", callback_data=cb_string_64.encode("UTF-8"))
+                        "MP3 (64 kbps)", callback_data="audio|64k|mp3|_"),
+                    InlineKeyboardButton(
+                        "MP3 (128 kbps)", callback_data="audio|128k|mp3|_")
                 ])
                 inline_keyboard.append([
                     InlineKeyboardButton(
-                        "🎵 ᴍᴘ𝟹 " + "(" + "128 ᴋʙᴘs" + ")", callback_data=cb_string_128.encode("UTF-8"))
-                ])
-                inline_keyboard.append([
-                    InlineKeyboardButton(
-                        "🎵 ᴍᴘ𝟹 " + "(" + "320 ᴋʙᴘs" + ")", callback_data=cb_string.encode("UTF-8"))
-                ])
-                inline_keyboard.append([                 
-                    InlineKeyboardButton(
-                        "🔐 Close", callback_data='close')               
+                        "MP3 (320 kbps)", callback_data="audio|320k|mp3|_")
                 ])
         else:
             format_id = response_json["format_id"]
             format_ext = response_json["ext"]
-
             cb_string_video = "{}|{}|{}|{}".format(
-                "video", format_id, format_ext, "DL", randem)
-            inline_keyboard.append([
-                InlineKeyboardButton(
-                    "🎬 Video",
-                    callback_data=(cb_string_video).encode("UTF-8")
-                )
-            ])
+                "video", format_id, format_ext, "DL", randem
+        )                
+
+
 
 
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
-        await chk.delete(True)
+        #await chk.delete(True)
         await bot.send_message(
             chat_id=update.chat.id,
             text=Translation.FORMAT_SELECTION,
