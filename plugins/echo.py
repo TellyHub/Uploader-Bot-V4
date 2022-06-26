@@ -185,7 +185,7 @@ async def echo(bot, update):
                     "video", format_id, format_ext, randem)
                 cb_string_file = "{}|{}|{}|{}".format(
                     "file", format_id, format_ext, randem)
-                if format_string.upper():
+                if  "DASH" in format_string.upper():
                         continue
                     format_ext = formats.get("ext")
                     approx_file_size = ""
