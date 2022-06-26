@@ -177,8 +177,7 @@ async def echo(bot, update):
         if "formats" in response_json:
             for formats in response_json["formats"]:
                 format_id = formats.get("format_id")
-                if "DASH" in format_string.upper():
-                    continue
+
                 format_string = formats.get("format_note")
                 if format_string is None:
                     format_string = formats.get("format")
@@ -190,7 +189,7 @@ async def echo(bot, update):
                     "video", format_id, format_ext, randem)
                 cb_string_file = "{}|{}|{}|{}".format(
                     "file", format_id, format_ext, randem)
-                if format_string is not None and not "audio only" in format_string:
+                if format_string is not None and not "audio only" in format_string.upper():
                     ikeyboard = [
                         InlineKeyboardButton(
                             "🎬 " + format_string + " " + format_ext + " " + approx_file_size + " ",
