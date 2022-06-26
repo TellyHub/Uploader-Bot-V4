@@ -177,6 +177,10 @@ async def echo(bot, update):
                 format_string = formats.get("format_note")
                 if format_string is None:
                     format_string = formats.get("format")
+                if "DASH" in format_string.upper():
+                    continue
+                    
+             
                 format_ext = formats.get("ext")
                 approx_file_size = ""
                 if "filesize" in formats:
@@ -185,10 +189,7 @@ async def echo(bot, update):
                     "video", format_id, format_ext, randem)
                 cb_string_file = "{}|{}|{}|{}".format(
                     "file", format_id, format_ext, randem)
-                if  "DASH" in format_string.upper():
-                        continue
-                    format_ext = formats.get("ext")
-                    approx_file_size = ""
+
                     ikeyboard = [
                         InlineKeyboardButton(
                             "🎬 " + format_string + " (" + format_ext.upper() + ") " + approx_file_size + " ",
