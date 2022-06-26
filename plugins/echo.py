@@ -188,27 +188,36 @@ async def echo(bot, update):
                 dipslay_str_uon = " " + format_string + " (" + format_ext.upper() + ") " + approx_file_size + " "
                 cb_string_video = "{}|{}|{}|{}".format(
                     "video", format_id, format_ext, scneu, randem)         
-             
-                
-                if format_string is not None and not "audio only" in format_string:
-                    ikeyboard = [
-                        InlineKeyboardButton(
-                            "🎬 " + format_string + " (" + format_ext.upper() + ") " + approx_file_size + " ",
-                            callback_data=(cb_string_video).encode("UTF-8")
-                        )
-                    ]
-           
+                ikeyboard = []
+                if "drive.google.com" in url:
+                    if format_id == "source":
+                        ikeyboard = [
+                            InlineKeyboardButton(
+                                dipslay_str_uon,
+                                callback_data=(cb_string_video).encode("UTF-8")
+                            )
+                        ]
                 else:
-                    # special weird case :\
-                    ikeyboard = [
-                        InlineKeyboardButton(
-                            "🎬 [" +
-                            "] ( " +
-                            approx_file_size + " )",
-                            callback_data=(cb_string_video).encode("UTF-8")
-                        )
-                    ]
+                    if format_string is not None and not "audio only" in format_string:
+                        ikeyboard = [
+                            InlineKeyboardButton(
+                                dipslay_str_uon,
+                                callback_data=(cb_string_video).encode("UTF-8")
+                            )
+                        ]
+                    else:
+                            # special weird case :\
+                        ikeyboard = [
+                            InlineKeyboardButton(
+                                "SVideo [" +
+                                "] ( " +
+                                approx_file_size + " )",
+                                callback_data=(cb_string_video).encode("UTF-8")
+                            )
+                        ]
                 inline_keyboard.append(ikeyboard)
+                
+
             if duration is not None:
                 cb_string_64 = "{}|{}|{}|{}".format("audio", "64k", "mp3", randem)
                 cb_string_128 = "{}|{}|{}|{}".format("audio", "128k", "mp3", randem)
