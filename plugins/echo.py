@@ -192,16 +192,7 @@ async def echo(bot, update):
                             callback_data=(cb_string_video).encode("UTF-8")
                         )
                     ]
-                    """if duration is not None:
-                        cb_string_video_message = "{}|{}|{}|{}|{}".format(
-                            "vm", format_id, format_ext, ran, randem)
-                        ikeyboard.append(
-                            InlineKeyboardButton(
-                                "VM",
-                                callback_data=(
-                                    cb_string_video_message).encode("UTF-8")
-                            )
-                        )"""
+           
                 else:
                     # special weird case :\
                     ikeyboard = [
