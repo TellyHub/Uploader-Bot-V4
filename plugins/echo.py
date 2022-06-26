@@ -1,3 +1,6 @@
+
+
+
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # (c) Shrimadhav U K | @Tellybots | @PlanetBots
@@ -122,7 +125,7 @@ async def echo(bot, update):
     logger.info(command_to_exec)
     chk = await bot.send_message(
             chat_id=update.chat.id,
-            text=f'⌛',
+            text=f'⌛ Analysing...!',
             disable_web_page_preview=True,
             reply_to_message_id=update.id,
             parse_mode=enums.ParseMode.HTML
@@ -174,17 +177,13 @@ async def echo(bot, update):
         if "formats" in response_json:
             for formats in response_json["formats"]:
                 format_id = formats.get("format_id")
+                if "DASH" in format_string.upper():
+                    continue
                 format_string = formats.get("format_note")
                 if format_string is None:
                     format_string = formats.get("format")
-
                 format_ext = formats.get("ext")
                 approx_file_size = ""
-                if "filesize" in formats:
-                    approx_file_size = humanbytes(formats["filesize"])
-                
-                if "DASH" in format_string.upper():
-                    continue
                 if "filesize" in formats:
                     approx_file_size = humanbytes(formats["filesize"])
                 cb_string_video = "{}|{}|{}|{}".format(
@@ -225,7 +224,9 @@ async def echo(bot, update):
                 cb_string = "{}|{}|{}|{}".format("audio", "320k", "mp3", randem)
                 inline_keyboard.append([
                     InlineKeyboardButton(
-                        "🎵 ᴍᴘ𝟹 " + "(" + "64 ᴋʙᴘs" + ")", callback_data=cb_string_64.encode("UTF-8")),
+                        "🎵 ᴍᴘ𝟹 " + "(" + "64 ᴋʙᴘs" + ")", callback_data=cb_string_64.encode("UTF-8"))
+                ])
+                inline_keyboard.append([
                     InlineKeyboardButton(
                         "🎵 ᴍᴘ𝟹 " + "(" + "128 ᴋʙᴘs" + ")", callback_data=cb_string_128.encode("UTF-8"))
                 ])
@@ -235,7 +236,7 @@ async def echo(bot, update):
                 ])
                 inline_keyboard.append([                 
                     InlineKeyboardButton(
-                        "✔️ ᴄʟᴏsᴇ", callback_data='close')               
+                        "🔐 Close", callback_data='close')               
                 ])
         else:
             format_id = response_json["format_id"]
@@ -246,7 +247,7 @@ async def echo(bot, update):
                 "video", format_id, format_ext, randem)
             inline_keyboard.append([
                 InlineKeyboardButton(
-                    "🎬 sᴍᴇᴅɪᴀ",
+                    "🎬 Video",
                     callback_data=(cb_string_video).encode("UTF-8")
                 )
             ])
@@ -256,7 +257,7 @@ async def echo(bot, update):
                 "video", format_id, format_ext)
             inline_keyboard.append([
                 InlineKeyboardButton(
-                    "🎥 ᴠɪᴅᴇᴏ",
+                    "🎥 Video file",
                     callback_data=(cb_string_video).encode("UTF-8")
                 )
             ])
@@ -278,7 +279,7 @@ async def echo(bot, update):
             "video", "OFL", "ENON")
         inline_keyboard.append([
             InlineKeyboardButton(
-                "🎬 ᴍᴇᴅɪᴀ",
+                "🎬 Video",
                 callback_data=(cb_string_video).encode("UTF-8")
             )
         ])
@@ -291,5 +292,4 @@ async def echo(bot, update):
             parse_mode=enums.ParseMode.HTML,
             reply_to_message_id=update.id
         )
-
 
