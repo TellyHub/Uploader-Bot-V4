@@ -231,9 +231,15 @@ async def echo(bot, update):
             format_id = response_json["format_id"]
             format_ext = response_json["ext"]
             cb_string_video = "{}|{}|{}|{}".format(
-                "video", format_id, format_ext, "DL", randem
-        )                
-
+                "video", format_id, format_ext, "DL", randem)                
+            inline_keyboard.append([
+                InlineKeyboardButton(
+                    "SVideo",
+                    callback_data=(cb_string_video).encode("UTF-8")
+                )
+            ])
+            # TODO: :\
+            break
 
 
 
