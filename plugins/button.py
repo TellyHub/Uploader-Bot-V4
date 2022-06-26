@@ -151,8 +151,21 @@ async def youtube_dl_call_back(bot, update):
             "-o", download_directory
         
         ]
+   
     else:
+        minus_f_format = youtube_dl_format
 
+        if "youtu" in youtube_dl_url:
+            for for_mat in response_json["formats"]:
+                format_id = for_mat.get("format_id")
+                if format_id == youtube_dl_format:
+                    acodec = for_mat.get("acodec")
+                    vcodec = for_mat.get("vcodec")
+                    if acodec == "none" or vcodec == "none":
+                        minus_f_format = youtube_dl_format + "+bestaudio"
+                    break
+        elif so_type:
+            minus_f_format = youtube_dl_format + "+bestaudio"
         command_to_exec = [
             "yt-dlp",
             "-c",
@@ -164,7 +177,7 @@ async def youtube_dl_call_back(bot, update):
             "--embed-subs",
             "-f",
             
-            youtube_dl_format,
+            minus_f_format,
             "--hls-prefer-native",
             youtube_dl_url,
             "-o",
