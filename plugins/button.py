@@ -161,7 +161,7 @@ async def youtube_dl_call_back(bot, update):
             "yt-dlp",
             "-c",
             "--cookies",
-            "-vU",
+            
             "--merge-output-format",
             "--geo-bypass",
             "--embed-metadata",
