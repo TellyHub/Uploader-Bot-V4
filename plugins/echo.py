@@ -100,7 +100,7 @@ async def echo(bot, update):
         command_to_exec = [
             "yt-dlp",
             "--no-warnings",
-            "--audio-multistreams",
+            "--merge-output-format",
             "--cookies",
             
             
@@ -112,7 +112,7 @@ async def echo(bot, update):
         command_to_exec = [
             "yt-dlp",
             "--no-warnings",
-            "--audio-multistreams",
+            "--merge-output-format",
             "--cookies",
             
         
