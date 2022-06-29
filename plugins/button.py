@@ -160,7 +160,7 @@ async def youtube_dl_call_back(bot, update):
         command_to_exec = [
             "yt-dlp",
             "-c",
-            "--cookies", cookies.txt,
+            "--cookies",
             "-vU",
             "--merge-output-format",
             "--geo-bypass",
