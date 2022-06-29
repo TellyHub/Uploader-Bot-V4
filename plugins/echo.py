@@ -103,6 +103,7 @@ async def echo(bot, update):
             "--audio-multistreams",
             "--cookies",
             "-vU",
+            "-F",
             "-j",
             url,
             "--proxy", Config.HTTP_PROXY
@@ -114,6 +115,7 @@ async def echo(bot, update):
             "--audio-multistreams",
             "--cookies",
             "-vU",
+            "-F",
             "-j",
             url
         ]
