@@ -51,9 +51,9 @@ async def echo(bot, update):
                 youtube_dl_password = url_parts[3]
             else:
                 for entity in update.entities:
-                     if entity.type == "text_link":
+                    if entity.type == "text_link":
                         url = entity.url
-                     elif entity.type == "url":
+                    elif entity.type == "url":
                         o = entity.offset
                         l = entity.length
                         url = url[o:o + l]
@@ -67,16 +67,8 @@ async def echo(bot, update):
             if youtube_dl_password is not None:
                 youtube_dl_password = youtube_dl_password.strip()
             logger.info(url)
-            logger.info(file_name)
-        else:
-            for entity in update.entities:
-                if entity.type == "text_link":
-                url = entity.url
-                elif entity.type == "url":
-                    o = entity.offset
-                    l = entity.length
-                    url = url[o:o + l]
-                logger.info(update.from_user)
+
+
 
              
  
