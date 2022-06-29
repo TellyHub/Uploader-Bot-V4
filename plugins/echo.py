@@ -100,7 +100,7 @@ async def echo(bot, update):
         command_to_exec = [
             "yt-dlp",
             "--no-warnings",
-            "--youtube-skip-hls-manifest",
+            "--allow-dynamic-mpd",
             "-j",
             url,
             "--proxy", Config.HTTP_PROXY
@@ -109,7 +109,7 @@ async def echo(bot, update):
         command_to_exec = [
             "yt-dlp",
             "--no-warnings",
-            "--youtube-skip-hls-manifest",
+            "--allow-dynamic-mpd",
             "-j",
             url
         ]
