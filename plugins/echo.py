@@ -104,7 +104,7 @@ async def echo(bot, update):
             "--cookies",
             "-vU",
             "-F",
-            "-j",
+            #"-j",
             url,
             "--proxy", Config.HTTP_PROXY
         ]
@@ -116,7 +116,7 @@ async def echo(bot, update):
             "--cookies",
             "-vU",
             "-F",
-            "-j",
+            #"-j",
             url
         ]
     if youtube_dl_username is not None:
