@@ -101,6 +101,8 @@ async def echo(bot, update):
             "yt-dlp",
             "--no-warnings",
             "--audio-multistreams",
+            "--cookies",
+            "-vU",
             "-j",
             url,
             "--proxy", Config.HTTP_PROXY
@@ -110,6 +112,8 @@ async def echo(bot, update):
             "yt-dlp",
             "--no-warnings",
             "--audio-multistreams",
+            "--cookies",
+            "-vU",
             "-j",
             url
         ]
