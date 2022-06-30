@@ -63,7 +63,17 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
 🎥 Tᴏᴛᴀʟ sɪᴢᴇ  : {2}\n\n
 ⏳ Tɪᴍᴇ ʟᴇғᴛ : {4}\n\n
 """
-
+    INFO_TEXT = """
+ 💫 Telegram Information
+ 🤹 First Name : <b>{}</b>
+ 🚴‍♂️ Second Name : <b>{}</b>
+ 🧑🏻‍🎓 Username : <b>@{}</b>
+ 🆔 Telegram Id : <code>{}</code>
+ 📇 Profile Link : <b>{}</b>
+ 📡 Dc : <b>{}</b>
+ 📑 Language : <b>{}</b>
+ 👲 Status : <b>{}</b>
+"""
 
     START_BUTTONS = InlineKeyboardMarkup(
         [[
