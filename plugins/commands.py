@@ -79,7 +79,8 @@ async def speed(bot, update):
         spg = await bot.send_message(
             text=f'Running speedtest....',
             chat_id=update.message.chat.id,
-            reply_to_message_id=update.message.message_id,
+            reply_to_message_id=update.id,
+            parse_mode=enums.ParseMode.HTML
         )
     
     test = Speedtest()
