@@ -64,14 +64,22 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
 ⏳ Tɪᴍᴇ ʟᴇғᴛ : {4}\n\n
 """
     INFO_TEXT = """
- 💫 Telegram Information
+ 💫 Telegram Info
+
  🤹 First Name : <b>{}</b>
+
  🚴‍♂️ Second Name : <b>{}</b>
+
  🧑🏻‍🎓 Username : <b>@{}</b>
+
  🆔 Telegram Id : <code>{}</code>
+
  📇 Profile Link : <b>{}</b>
+
  📡 Dc : <b>{}</b>
+
  📑 Language : <b>{}</b>
+
  👲 Status : <b>{}</b>
 """
 
