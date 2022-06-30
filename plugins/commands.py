@@ -27,8 +27,8 @@ from pyrogram import enums, StopPropagation
 )
 async def start_bot(_, m: Message):
     return await m.reply_text(
-        Constants.start_msg.format(m.from_user.first_name, Vars.CAPTION),
-        reply_markup=ikb(Constants.start_kb),
+        Translation.START_TEXT.format(m.from_user.first_name, Vars.CAPTION),
+        reply_markup=ikb(Translation.START_BUTTONS),
         disable_web_page_preview=True,
         quote=True,
     )
