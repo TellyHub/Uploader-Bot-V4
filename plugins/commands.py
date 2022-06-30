@@ -43,11 +43,17 @@ async def start(bot, update):
 async def rate(bot, update):
             await bot.forward_messages(update.chat.id, "@Super_botz", Config.RATE_MSG_ID)
         
-@Client.on_message(filters.command(["me"]) & filters.private)
-async def me(bot, update):
-    await bot.send_message(
-              chat_id=update.chat.id,
-              text="Telegram ID : {}".format(update.chat.id),
-              parse_mode="html",
-              disable_web_page_preview=True
+@Client.on_message(filters.private & filters.command("info"))
+async def info_handler(bot, update):
+
+
+    if update.from_user.last_name:
+        last_name = update.from_user.last_name
+    else:
+        last_name = "None"
+
+  
+    await update.reply_text(  
+        text=Translation.INFO_TEXT.format(update.from_user.first_name, last_name, update.from_user.username, update.from_user.id, update.from_user.mention, update.from_user.dc_id, update.from_user.language_code, update.from_user.status),             
+        disable_web_page_preview=True
     )
