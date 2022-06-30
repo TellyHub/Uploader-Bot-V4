@@ -57,3 +57,13 @@ async def info_handler(bot, update):
         text=Translation.INFO_TEXT.format(update.from_user.first_name, last_name, update.from_user.username, update.from_user.id, update.from_user.mention, update.from_user.dc_id, update.from_user.language_code, update.from_user.status),             
         disable_web_page_preview=True
     )
+@Client.on_message(filters.private & filters.command("upgrade"))
+async def upgrade(bot, update):
+
+
+
+  
+    await update.reply_text(  
+        text=Translation.INFO_TEXT.format(update.from_user.first_name, last_name, update.from_user.username, update.from_user.id, update.from_user.mention, update.from_user.dc_id, update.from_user.language_code, update.from_user.status),             
+        disable_web_page_preview=True
+    )
