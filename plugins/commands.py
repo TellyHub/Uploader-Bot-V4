@@ -21,6 +21,18 @@ from plugins.database.add import add_user_to_database
 from plugins.functions.forcesub import handle_force_subscribe
 from pyrogram import enums, StopPropagation
 
+
+@Client.on_message(
+    filters.command("start", Vars.PREFIX_HANDLER) & filters.private,
+)
+async def start_bot(_, m: Message):
+    return await m.reply_text(
+        Constants.start_msg.format(m.from_user.first_name, Vars.CAPTION),
+        reply_markup=ikb(Constants.start_kb),
+        disable_web_page_preview=True,
+        quote=True,
+    )
+
 @Client.on_message(filters.command(["start"]) & filters.private)
 async def start(bot, update):
     if not update.from_user:
