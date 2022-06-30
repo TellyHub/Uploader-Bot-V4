@@ -59,10 +59,10 @@ async def info_handler(bot, update):
         reply_markup=Translation.BUTTONS
     
     )
-@Client.on_message(filters.private & filters.command("upgrade"))
+@Client.on_message(filters.private & filters.command("plan"))
 async def upgrade(bot, update):  
     await update.reply_text(  
-        text=UPGRADE_TEXT,             
+        text=Translation.UPGRADE_TEXT,             
         disable_web_page_preview=True,
         reply_markup=Translation.BUTTONS
     
