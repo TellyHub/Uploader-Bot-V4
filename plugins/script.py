@@ -1,4 +1,8 @@
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+
 class Translation(object):
+
 
 
     TEXT = "sᴇɴᴅ ᴍᴇ ᴀɴʏ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ ᴛᴏ sᴇᴛ ɪᴛ"
