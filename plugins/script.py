@@ -180,7 +180,11 @@ Free users only 1 request per 30 minutes.
     BANNED_USER_TEXT = "<code>You are Banned!</code>"
     CHECK_LINK = "⌛"
 
-
+    CURENT_PLAN_DETAILS = """Current plan details
+--------
+Telegram ID: <code>{}</code>
+Plan : {}
+Expires on: {}"""
 
 
 
