@@ -27,17 +27,12 @@ class Text:
             else None
         )
 
-    start_kb = [
-        [
-            ("How to use", "help_callback.start"),
-            ("Help & Support", f"https://t.me/{Vars.SUPPORT_GROUP}", "url"),
-        ],
-    ]
 
 
 
 
-    start_msg = """
+
+    START_TEXT = """
 👋 Hᴇʏ {} ♡
 
 I ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ᴍᴏsᴛ ᴘᴏᴡᴇʀғᴜʟ ᴜʀʟ ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ
@@ -48,7 +43,7 @@ Usᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍ
 """
 
 
-    help_msg = """
+    HELP_TEXT = """
 ʟɪɴᴋ ᴛᴏ ᴍᴇᴅɪᴀ ᴏʀ ғɪʟᴇ
 
 ➠ sᴇɴᴅ ᴀ ʟɪɴᴋ ғᴏʀ ᴜᴘʟᴏᴀᴅ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴍ ғɪʟᴇ ᴏʀ ᴍᴇᴅɪᴀ.
@@ -72,7 +67,7 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
 ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : [Tᴇʟʟʏʙᴏᴛs](https://telegram.me/TellyBots)
  
 """
-    about_msg = """
+    ABOUT_TEXT = """
 **Mʏ ɴᴀᴍᴇ** : [ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ](http://t.me/TellyUploaderRobot)
 
 **Cʜᴀɴɴᴇʟ** : [Tᴇʟʟʏʙᴏᴛs](https://t.me/TellyBots)
@@ -120,7 +115,7 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
  👲 Status : <b>{}</b>
 """
 
-    st_bt = InlineKeyboardMarkup(
+    START_BUTTONS = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton('🗜️ sᴇᴛᴛɪɴɢs', callback_data='OpenSettings')
         ],[
@@ -130,7 +125,7 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
         InlineKeyboardButton('♨️ ᴄʟᴏsᴇ', callback_data='close')
         ]]
     )
-    hp_bt = InlineKeyboardMarkup(
+    HELP_BUTTONS = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton('🏡 ʜᴏᴍᴇ', callback_data='home'),
         InlineKeyboardButton('👨‍🚒 ᴀʙᴏᴜᴛ', callback_data='about')
@@ -138,7 +133,7 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
         InlineKeyboardButton('♨️ ᴄʟᴏsᴇ', callback_data='close')
         ]]
     )
-    ab_bt = InlineKeyboardMarkup(
+    ABOUT_BUTTONS = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton('🏡 ʜᴏᴍᴇ', callback_data='home'),
         InlineKeyboardButton('❔ ʜᴇʟᴘ', callback_data='help')
