@@ -47,16 +47,8 @@ Usᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍ
 ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : [Tᴇʟʟʏʙᴏᴛs](t.me//tellybots)
 """
 
-    START_TEXT = """
-👋 Hᴇʏ {} ♡
 
-I ᴀᴍ ᴛᴇʟᴇɢʀᴀᴍ ᴍᴏsᴛ ᴘᴏᴡᴇʀғᴜʟ ᴜʀʟ ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ
-
-Usᴇ ʜᴇʟᴘ ʙᴜᴛᴛᴏɴ ᴛᴏ ᴋɴᴏᴡ ʜᴏᴡ ᴛᴏ ᴜsᴇ ᴍᴇ
-
-ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : [Tᴇʟʟʏʙᴏᴛs](https://telegram.me/TellyBots)
-"""
-    HELP_TEXT = """
+    help_msg = """
 ʟɪɴᴋ ᴛᴏ ᴍᴇᴅɪᴀ ᴏʀ ғɪʟᴇ
 
 ➠ sᴇɴᴅ ᴀ ʟɪɴᴋ ғᴏʀ ᴜᴘʟᴏᴀᴅ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴍ ғɪʟᴇ ᴏʀ ᴍᴇᴅɪᴀ.
@@ -80,7 +72,7 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
 ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : [Tᴇʟʟʏʙᴏᴛs](https://telegram.me/TellyBots)
  
 """
-    ABOUT_TEXT = """
+    about_msg = """
 **Mʏ ɴᴀᴍᴇ** : [ᴜᴘʟᴏᴀᴅᴇʀ ʙᴏᴛ](http://t.me/TellyUploaderRobot)
 
 **Cʜᴀɴɴᴇʟ** : [Tᴇʟʟʏʙᴏᴛs](https://t.me/TellyBots)
@@ -128,7 +120,7 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
  👲 Status : <b>{}</b>
 """
 
-    START_BUTTONS = InlineKeyboardMarkup(
+    st_bt = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton('🗜️ sᴇᴛᴛɪɴɢs', callback_data='OpenSettings')
         ],[
@@ -138,7 +130,7 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
         InlineKeyboardButton('♨️ ᴄʟᴏsᴇ', callback_data='close')
         ]]
     )
-    HELP_BUTTONS = InlineKeyboardMarkup(
+    hp_bt = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton('🏡 ʜᴏᴍᴇ', callback_data='home'),
         InlineKeyboardButton('👨‍🚒 ᴀʙᴏᴜᴛ', callback_data='about')
@@ -146,7 +138,7 @@ sʜᴏᴡ ᴛʜᴜᴍʙɴᴀɪʟ
         InlineKeyboardButton('♨️ ᴄʟᴏsᴇ', callback_data='close')
         ]]
     )
-    ABOUT_BUTTONS = InlineKeyboardMarkup(
+    ab_bt = InlineKeyboardMarkup(
         [[
         InlineKeyboardButton('🏡 ʜᴏᴍᴇ', callback_data='home'),
         InlineKeyboardButton('❔ ʜᴇʟᴘ', callback_data='help')
