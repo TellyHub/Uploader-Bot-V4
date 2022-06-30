@@ -22,16 +22,7 @@ from plugins.functions.forcesub import handle_force_subscribe
 from pyrogram import enums, StopPropagation
 
 
-@Client.on_message(
-    filters.command("start", Vars.PREFIX_HANDLER) & filters.private,
-)
-async def start_bot(_, m: Message):
-    return await m.reply_text(
-        Text.START_TEXT.format(m.from_user.first_name, Vars.CAPTION),
-        reply_markup=ikb(Text.START_BUTTONS),
-        disable_web_page_preview=True,
-        quote=True,
-    )
+
 
 
 
@@ -51,9 +42,9 @@ async def info_handler(bot, update):
 
   
     await update.reply_text(  
-        text=TEXT.format(update.from_user.first_name, last_name, update.from_user.username, update.from_user.id, update.from_user.mention, update.from_user.dc_id, update.from_user.language_code, update.from_user.status),             
+        text=Translation.format(update.from_user.first_name, last_name, update.from_user.username, update.from_user.id, update.from_user.mention, update.from_user.dc_id, update.from_user.language_code, update.from_user.status),             
         disable_web_page_preview=True,
-        reply_markup=ikb(Text.BUTTONS)
+        reply_markup=Translation.BUTTONS
     
     )
 @Client.on_message(filters.private & filters.command("plan"))
@@ -61,7 +52,7 @@ async def upgrade(bot, update):
     await update.reply_text(  
         text=Translation.UPGRADE_TEXT,             
         disable_web_page_preview=True,
-        reply_markup=ikb(Text.BUTTONS)
+        reply_markup=Translation.BUTTONS
     
     )
 @Client.on_message(filters.command(["myspeed"]) & filters.private)
