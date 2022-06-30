@@ -115,10 +115,10 @@ async def speed(bot, update):
         print(pri)
         
     try:
-        await update.reply_photo(path, caption=string_speed, parse_mode="HTML")
+        await update.reply_photo(path, caption=string_speed)
     except Exception as cv:
         print("Error 60 ", cv)
-        await update.reply_text(string_speed, parse_mode="HTML", disable_web_page_preview=True)
+        await update.reply_text(string_speed, disable_web_page_preview=True)
         
 def speed_convert(size):
     """Hi human, you can't read bytes?"""
