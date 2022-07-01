@@ -169,7 +169,7 @@ async def youtube_dl_call_back(bot, update):
             "--allow-dynamic-mpd",
             "--embed-subs",
             "-f",
-            
+            "--external-downloader", "aria2c",
             youtube_dl_format,
             "--hls-prefer-native",
             youtube_dl_url,
