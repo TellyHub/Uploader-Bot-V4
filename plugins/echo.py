@@ -100,8 +100,8 @@ async def echo(bot, update):
         command_to_exec = [
             "yt-dlp",
             "--no-warnings",
-            "--external-downloader", "aria2c",
-            #"--merge-output-format",
+            #"--external-downloader", "aria2c",
+            "--merge-output-format",
             "--cookies",
             
             
@@ -113,8 +113,8 @@ async def echo(bot, update):
         command_to_exec = [
             "yt-dlp",
             "--no-warnings",
-            #"--merge-output-format",
-           "--external-downloader", "aria2c",
+            "--merge-output-format",
+           
             "--cookies",
             
         
