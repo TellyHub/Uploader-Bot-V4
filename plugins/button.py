@@ -170,7 +170,7 @@ async def youtube_dl_call_back(bot, update):
             "--embed-subs",
             "-f",
             #"--external-downloader", "aria2c",
-            #youtube_dl_format,
+            youtube_dl_format,
             "--hls-prefer-native",
             youtube_dl_url,
             "-o",
