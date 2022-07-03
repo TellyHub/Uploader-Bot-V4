@@ -27,7 +27,7 @@ from PIL import Image
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
     # youtube_dl extractors
-    tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")[-2]
+    tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")
     
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + ".json"
@@ -128,7 +128,7 @@ async def youtube_dl_call_back(bot, update):
         command_to_exec = [
             "yt-dlp",
             "-c",
-            "--ignore-no-formats-error",
+            "postprocessors": [{"key": "FFmpegMetadata"}],
             "--embed-metadata",
             "--merge-output-format",
             "--clean-info-json",
