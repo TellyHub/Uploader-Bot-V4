@@ -67,6 +67,48 @@ async def youtube_dl_call_back(bot, update):
         custom_file_name
     )
     command_to_exec = []
+    command_to_exec = []
+    with open("backup.json", "r", encoding="utf8") as f:
+                  b_json = json.load(f)
+    if update.from_user.id in Config.ONE_BY_ONE:
+      for users in b_json["users"]:
+        user = users.get("user_id")
+        exp_req = users.get("exp_req")
+        if int(update.from_user.id) == int(user):
+          if datetime.strptime(exp_req, '%Y-%m-%d %H:%M:%S.%f') > datetime.now():
+            rem = datetime.strptime(exp_req, '%Y-%m-%d %H:%M:%S.%f') - datetime.now()
+            await update.message.edit_text("😴 Please wait {} for next process.".format(datetime.strptime(str(rem), '%H:%M:%S.%f').strftime('%H Hrs %M Mins %S Sec')))
+            return
+    Config.ONE_BY_ONE.append(update.from_user.id)
+    if not update.from_user.id in Config.TODAY_USERS:
+       Config.TODAY_USERS.append(update.from_user.id)
+       exp_date = datetime.now()
+       exp_req = exp_date + timedelta(minutes=int(Config.TIME_GAP))
+       fir = 0
+       b_json["users"].append({
+         "user_id": "{}".format(update.from_user.id),
+         "total_req": "{}".format(fir),
+         "exp_req": "{}".format(exp_req)
+       })
+       with open("backup.json", "w", encoding="utf8") as outfile:
+               json.dump(b_json, outfile, ensure_ascii=False)
+    user_count = 0
+    for users in b_json["users"]:
+      user = users.get("user_id")
+      total_req = users.get("total_req")
+      user_count = user_count + 1
+      #if int(update.from_user.id) == int(user):
+      # if int(total_req) > 3:
+      #    await update.reply_text("😴 You reached per day limit. send /me to know renew time.")
+      #    return
+    b_json["users"].pop(user_count - 1)
+    b_json["users"].append({
+         "user_id": "{}".format(update.from_user.id),
+         "total_req": "{}".format(int(total_req) + 1),
+         "exp_req": "{}".format(datetime.now() + timedelta(minutes=int(Config.TIME_GAP)))
+    })
+    with open("backup.json", "w", encoding="utf8") as outfile:
+          json.dump(b_json, outfile, ensure_ascii=False)
     if tg_send_type == "audio":
         command_to_exec = [
             "yt-dlp",
