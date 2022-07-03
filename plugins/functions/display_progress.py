@@ -5,8 +5,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.script import Translation
 from pyrogram import enums 
 import asyncio
-from typing import list
-
+from typing import List
 
 async def progress_for_pyrogram(current, total, ud_type, message, start):
     now = time.time()
