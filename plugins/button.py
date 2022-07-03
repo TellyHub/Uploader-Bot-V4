@@ -27,8 +27,8 @@ from PIL import Image
 async def youtube_dl_call_back(bot, update):
     cb_data = update.data
     # youtube_dl extractors
-    tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")
-    format_id = cb_data.split("||")[-2]
+    tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")[-2]
+    
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + ".json"
     try:
@@ -135,7 +135,7 @@ async def youtube_dl_call_back(bot, update):
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--embed-subs",
             
-            "-f", f"{format_id}+bestaudio",
+            "-f", f"{youtube_dl_ext}+bestaudio",
             "--hls-prefer-native", youtube_dl_url,
             "-o", download_directory
         ]
