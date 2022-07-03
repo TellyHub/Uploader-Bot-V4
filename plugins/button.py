@@ -19,5 +19,4 @@ from pyrogram.types import InputMediaPhoto
 from plugins.functions.display_progress import *
 from plugins.database.database import db
 from PIL import Image
-from plugins.functions.ran_text import random_char
 
