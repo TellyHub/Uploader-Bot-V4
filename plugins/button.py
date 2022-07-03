@@ -161,19 +161,16 @@ async def youtube_dl_call_back(bot, update):
         
                     parse_mode=enums.ParseMode.HTML
                 )
-
                 start_time = time.time()
-                # try to upload file
-                if tg_send_type == "audio":
-                    await update.message.reply_audio(
-                        audio=current_file_name,
+                if (await db.get_upload_as_doc(update.from_user.id)) is False:
+                    thumbnail = await Gthumb01(bot, update)
+                    await update.message.reply_document(
+                    #chat_id=update.message.chat.id,
+                        document=download_directory,
+                        thumb=thumbnail,
                         caption=description,
                         parse_mode=enums.ParseMode.HTML,
-                        duration=duration,
-                        # performer=response_json["uploader"],
-                        # title=response_json["title"],
-                        # reply_markup=reply_markup,
-                        thumb=thumb_image_path,
+                    #reply_to_message_id=update.id,
                         progress=progress_for_pyrogram,
                         progress_args=(
                             Translation.UPLOAD_START,
@@ -181,13 +178,38 @@ async def youtube_dl_call_back(bot, update):
                             start_time
                         )
                     )
-                elif tg_send_type == "file":
-                    await update.message.reply_document(
-                        document=current_file_name,
+                else:
+                     width, height, duration = await Mdata01(download_directory)
+                     thumb_image_path = await Gthumb02(bot, update, duration, download_directory)
+                     await update.message.reply_video(
+                    #chat_id=update.message.chat.id,
+                        video=download_directory,
+                        caption=description,
+                        duration=duration,
+                        width=width,
+                        height=height,
+                        supports_streaming=True,
+                        parse_mode=enums.ParseMode.HTML,
                         thumb=thumb_image_path,
+                    #reply_to_message_id=update.id,
+                        progress=progress_for_pyrogram,
+                        progress_args=(
+                            Translation.UPLOAD_START,
+                            update.message,
+                            start_time
+                        )
+                    )
+                if tg_send_type == "audio":
+                    duration = await Mdata03(download_directory)
+                    thumbnail = await Gthumb01(bot, update)
+                    await update.message.reply_audio(
+                    #chat_id=update.message.chat.id,
+                        audio=download_directory,
                         caption=description,
                         parse_mode=enums.ParseMode.HTML,
-                        # reply_markup=reply_markup,
+                        duration=duration,
+                        thumb=thumbnail,
+                    #reply_to_message_id=update.id,
                         progress=progress_for_pyrogram,
                         progress_args=(
                             Translation.UPLOAD_START,
@@ -196,11 +218,15 @@ async def youtube_dl_call_back(bot, update):
                         )
                     )
                 elif tg_send_type == "vm":
+                    width, duration = await Mdata02(download_directory)
+                    thumbnail = await Gthumb02(bot, update, duration, download_directory)
                     await update.message.reply_video_note(
-                        video_note=current_file_name,
+                    #chat_id=update.message.chat.id,
+                        video_note=download_directory,
                         duration=duration,
                         length=width,
-                        thumb=thumb_image_path,
+                        thumb=thumbnail,
+                    #reply_to_message_id=update.id,
                         progress=progress_for_pyrogram,
                         progress_args=(
                             Translation.UPLOAD_START,
@@ -208,24 +234,8 @@ async def youtube_dl_call_back(bot, update):
                             start_time
                         )
                     )
-                elif tg_send_type == "video":
-                    await update.message.reply_video(
-                        video=current_file_name,
-                        caption=description,
-                        parse_mode=enums.ParseMode.HTML,
-                        duration=duration,
-                        width=width,
-                        height=height,
-                        supports_streaming=True,
-                        # reply_markup=reply_markup,
-                        thumb=thumb_image_path,
-                        progress=progress_for_pyrogram,
-                        progress_args=(
-                            Translation.UPLOAD_START,
-                            update.message,
-                            start_time
-                        )
-                    )
+            
+                
                 else:
                     LOGGER.info("Did this happen? :\\")
                 end_two = datetime.now()
