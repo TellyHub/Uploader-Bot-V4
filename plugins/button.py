@@ -2,11 +2,7 @@
 # -*- coding: utf-8 -*-
 # (c) Shrimadhav U K | @Tellybots
 
-# the logging things
-import logging
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+
 
 import asyncio
 import json
@@ -19,7 +15,7 @@ from pyrogram import enums
 from plugins.config import Config
 from plugins.script import Translation
 from plugins.thumbnail import *
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
+from plugins.__init__ import *
 from pyrogram.types import InputMediaPhoto
 from plugins.functions.display_progress import progress_for_pyrogram, humanbytes
 from plugins.database.database import db
@@ -73,8 +69,8 @@ async def youtube_dl_call_back(bot, update):
             youtube_dl_username = youtube_dl_username.strip()
         if youtube_dl_password is not None:
             youtube_dl_password = youtube_dl_password.strip()
-        logger.info(youtube_dl_url)
-        logger.info(custom_file_name)
+        LOGGER.info(youtube_dl_url)
+        LOGGER.info(custom_file_name)
     else:
         for entity in update.message.reply_to_message.entities:
             if entity.type == "text_link":
@@ -189,7 +185,7 @@ async def youtube_dl_call_back(bot, update):
         command_to_exec.append(youtube_dl_password)
     command_to_exec.append("--no-warnings")
     # command_to_exec.append("--quiet")
-    logger.info(command_to_exec)
+    LOGGER.info(command_to_exec)
     start = datetime.now()
     process = await asyncio.create_subprocess_exec(
         *command_to_exec,
@@ -223,7 +219,7 @@ async def youtube_dl_call_back(bot, update):
         return False
 
     if t_response:
-        logger.info(t_response)
+        LOGGER.info(t_response)
         try:
             os.remove(save_ytdl_json_path)
         except FileNotFoundError as exc:
@@ -262,7 +258,7 @@ async def youtube_dl_call_back(bot, update):
                 300,
                 9
             )
-            logger.info(images)'''
+            LOGGER.info(images)'''
             await update.message.edit_caption(
                 caption=Translation.UPLOAD_START,
                 parse_mode=enums.ParseMode.HTML
@@ -343,7 +339,7 @@ async def youtube_dl_call_back(bot, update):
                     )
                 )
             else:
-                logger.info("Did this happen? :\\")
+                LOGGER.info("Did this happen? :\\")
             end_two = datetime.now()
             time_taken_for_upload = (end_two - end_one).seconds
             try:
