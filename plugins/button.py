@@ -135,6 +135,7 @@ async def youtube_dl_call_back(bot, update):
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--embed-subs",
             "%(title)s.f%(format_id)s.%(ext)s",
+            "-f", "bv+ba/b",
             "--hls-prefer-native", youtube_dl_url,
             "-o", download_directory
         ]
