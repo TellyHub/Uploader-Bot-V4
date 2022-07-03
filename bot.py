@@ -1,17 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-import logging
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
 import os
 from plugins.config import Config
 
 from pyrogram import Client as sprbt
 from pyrogram import filters
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
+from plugins.__init__. import LOGGER 
 
 
 if __name__ == "__main__" :
