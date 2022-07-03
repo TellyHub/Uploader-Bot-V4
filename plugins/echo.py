@@ -153,7 +153,7 @@ async def echo(bot, update):
             x_reponse, _ = x_reponse.split("\n")
         response_json = json.loads(x_reponse)
         randem = random_char(5)
-        save_ytdl_json_path = DOWNLOAD_LOCATION + \
+        save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
             "/" + f'{randem}' + str(update.from_user.id) + ".json"
         with open(save_ytdl_json_path, "w", encoding="utf8") as outfile:
             json.dump(response_json, outfile, ensure_ascii=False)
