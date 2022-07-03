@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+
 # (c) Shrimadhav U K | @Tellybots
 
 
@@ -140,6 +139,7 @@ async def youtube_dl_call_back(bot, update):
             "yt-dlp",
             "-c",
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
+            "--no-check-certificates",
             "--prefer-ffmpeg",
             "--extract-audio",
             "--audio-format", youtube_dl_ext,
@@ -158,7 +158,8 @@ async def youtube_dl_call_back(bot, update):
             "yt-dlp",
             "-c",
             "--cookies",
-            
+
+            "--no-check-certificates",
             "--merge-output-format",
             "--geo-bypass",
             "--embed-metadata",
