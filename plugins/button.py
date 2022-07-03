@@ -237,16 +237,17 @@ async def youtube_dl_call_back(bot, update):
             
                 
                 else:
-                    LOGGER.info("Did this happen? :\\")
+                else:
+                    logger.info("Did this happen? :\\")
                 end_two = datetime.now()
                 time_taken_for_upload = (end_two - end_one).seconds
+                try:
+                    shutil.rmtree(tmp_directory_for_each_user, ignore_errors=True)
+                    os.remove(thumb_image_path)
+                except:
+                    pass
+                await update.message.edit_caption(
+                    caption=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload),
+                    parse_mode=enums.ParseMode.HTML
 
-            #
-            shutil.rmtree(
-                tmp_directory_for_each_user,
-                ignore_errors=True
-            )
-            os.remove(thumb_image_path)
-
-            await update.message.delete()
 
