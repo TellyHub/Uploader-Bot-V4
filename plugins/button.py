@@ -81,7 +81,7 @@ async def youtube_dl_call_back(bot, update):
                 youtube_dl_url = youtube_dl_url[o:o + l]
     await update.message.edit_caption(
         caption=Translation.DOWNLOAD_START,
-        progress=prog.progress_for_pyrogram,
+        #progress=prog.progress_for_pyrogram,
         parse_mode=enums.ParseMode.HTML
     )
     description = Translation.CUSTOM_CAPTION_UL_FILE
