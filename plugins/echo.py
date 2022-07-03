@@ -11,7 +11,7 @@ from pyrogram import Client, enums
 from plugins.functions.forcesub import handle_force_subscribe
 from plugins.functions.display_progress import humanbytes
 from plugins.functions.help_uploadbot import DownLoadFile
-from plugins.functions.display_progress import progress_for_pyrogram, humanbytes, TimeFormatter
+from plugins.functions.display_progress import *
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
