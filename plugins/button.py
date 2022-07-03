@@ -240,33 +240,7 @@ async def youtube_dl_call_back(bot, update):
                     LOGGER.info("Did this happen? :\\")
                 end_two = datetime.now()
                 time_taken_for_upload = (end_two - end_one).seconds
-                #
-                media_album_p = []
-                if images is not None:
-                    i = 0
-                    caption = "© @AnyDLBot"
-                    for image in images:
-                        if os.path.exists(image):
-                            if i == 0:
-                                media_album_p.append(
-                                    InputMediaPhoto(
-                                        media=image,
-                                        caption=caption,
-                                        parse_mode=enums.ParseMode.HTML
-                                    )
-                                )
-                            else:
-                                media_album_p.append(
-                                    InputMediaPhoto(
-                                        media=image
-                                    )
-                                )
-                            i = i + 1
-                await update.message.reply_media_group(
-                    media=media_album_p,
-                    parse_mode=enums.ParseMode.HTML,
-                    disable_notification=True
-                )
+
             #
             shutil.rmtree(
                 tmp_directory_for_each_user,
