@@ -28,7 +28,7 @@ async def youtube_dl_call_back(bot, update):
     tg_send_type, youtube_dl_format, youtube_dl_ext, ranom = cb_data.split("|")
     print(cb_data)
     random1 = random_char(5)
-    prog = Progress(update.from_user.id, bot, update.message)
+    
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + f'{ranom}' + ".json"
     try:
@@ -276,7 +276,7 @@ async def youtube_dl_call_back(bot, update):
                     caption=description,
                     parse_mode=enums.ParseMode.HTML,
                     #reply_to_message_id=update.id,
-                    progress=prog.progress_for_pyrogram,
+                    progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
                         update.message,
@@ -297,7 +297,7 @@ async def youtube_dl_call_back(bot, update):
                     parse_mode=enums.ParseMode.HTML,
                     thumb=thumb_image_path,
                     #reply_to_message_id=update.id,
-                    progress=prog.progress_for_pyrogram,
+                    progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
                         update.message,
@@ -315,7 +315,7 @@ async def youtube_dl_call_back(bot, update):
                     duration=duration,
                     thumb=thumbnail,
                     #reply_to_message_id=update.id,
-                    progress=prog.progress_for_pyrogram,
+                    progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
                         update.message,
@@ -332,7 +332,7 @@ async def youtube_dl_call_back(bot, update):
                     length=width,
                     thumb=thumbnail,
                     #reply_to_message_id=update.id,
-                    progress=prog.progress_for_pyrogram,
+                    progress=progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
                         update.message,
