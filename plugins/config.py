@@ -61,3 +61,6 @@ class Config(object):
     TODAY_USERS = []
     TIME_GAP = int(os.environ.get("TIME_GAP", 2))
     RATE_MSG_ID = int(os.environ.get("RATE_MSG_ID", 123))
+    FINISHED_PROGRESS_STR = os.environ.get("FINISHED_PROGRESS_STR", "█")
+    UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "░")
+    EDIT_SLEEP_TIME_OUT = 10
