@@ -88,11 +88,12 @@ async def youtube_dl_call_back(bot, update):
             "-c",
             "--ignore-no-formats-error",
             "--embed-metadata",
-            
+            "--merge-output-format",
+            "--clean-info-json",
             "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--embed-subs",
             "-f", minus_f_format,
-            "--hls-prefer-ffmpeg", youtube_dl_url,
+            "--hls-prefer-native", youtube_dl_url,
             "-o", download_directory
         ]
     if Config.HTTP_PROXY is not None:
