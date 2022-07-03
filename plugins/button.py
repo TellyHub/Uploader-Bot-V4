@@ -146,7 +146,7 @@ async def youtube_dl_call_back(bot, update):
 
             else:
                 is_w_f = False
-                images = await generate_screen_shots(
+                '''images = await generate_screen_shots(
                     current_file_name,
                     tmp_directory_for_each_user,
                     is_w_f,
@@ -154,7 +154,7 @@ async def youtube_dl_call_back(bot, update):
                     300,
                     9
                 )
-                LOGGER.info(images)
+                '''LOGGER.info(images)
                 await update.message.edit_caption(
                     caption=Translation.UPLOAD_START,
 
