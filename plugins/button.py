@@ -154,7 +154,7 @@ async def youtube_dl_call_back(bot, update):
                     300,
                     9
                 )
-                '''LOGGER.info(images)
+                LOGGER.info(images)'''
                 await update.message.edit_caption(
                     caption=Translation.UPLOAD_START,
 
