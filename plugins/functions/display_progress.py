@@ -8,7 +8,7 @@ import os
 import time
 
 from pyrogram.errors.exceptions import FloodWait
-from __init__ import (
+from plugins.__init__ import (
     FINISHED_PROGRESS_STR,
     UN_FINISHED_PROGRESS_STR,
     EDIT_SLEEP_TIME_OUT,
@@ -65,7 +65,7 @@ class Progress:
             )
             await self._client.stop_transmission()
 
-        if round(diff % float(Config.EDIT_SLEEP_TIME_OUT)) == 0 or current == total:
+        if round(diff % float(EDIT_SLEEP_TIME_OUT)) == 0 or current == total:
             # if round(current / total * 100, 0) % 5 == 0:
             percentage = current * 100 / total
             speed = current / diff
@@ -78,11 +78,11 @@ class Progress:
 
             progress = "\n<code>[{0}{1}] {2}%</code>\n".format(
                 "".join(
-                    [Config.FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]
+                    [FINISHED_PROGRESS_STR for i in range(math.floor(percentage / 5))]
                 ),
                 "".join(
                     [
-                        Config.UN_FINISHED_PROGRESS_STR
+                        UN_FINISHED_PROGRESS_STR
                         for i in range(20 - math.floor(percentage / 5))
                     ]
                 ),
