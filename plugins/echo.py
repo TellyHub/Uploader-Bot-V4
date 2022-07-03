@@ -24,11 +24,7 @@ from pyrogram.types import Thumbnail
 
 async def echo(bot, update: Message):
 
-    # LOGGER.info(update)
-    # await bot.send_chat_action(
-    #     chat_id=update.chat.id,
-    #     action="typing"
-    # )
+
     LOGGER.info(update.from_user)
     url, _, youtube_dl_username, youtube_dl_password = get_link(update)
     if HTTP_PROXY is not None:
