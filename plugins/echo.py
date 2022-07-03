@@ -27,14 +27,14 @@ async def echo(bot, update: Message):
 
     LOGGER.info(update.from_user)
     url, _, youtube_dl_username, youtube_dl_password = get_link(update)
-    if HTTP_PROXY is not None:
+    if Config.HTTP_PROXY is not None:
         command_to_exec = [
             "yt-dlp",
             "--no-warnings",
             "--youtube-skip-dash-manifest",
             "-j",
             url,
-            "--proxy", HTTP_PROXY
+            "--proxy", Config.HTTP_PROXY
         ]
     else:
         command_to_exec = [
@@ -74,7 +74,7 @@ async def echo(bot, update: Message):
         if "\n" in x_reponse:
             x_reponse, _ = x_reponse.split("\n")
         response_json = json.loads(x_reponse)
-        save_ytdl_json_path = DOWNLOAD_LOCATION + \
+        save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
             "/" + str(update.from_user.id) + ".json"
         with open(save_ytdl_json_path, "w", encoding="utf8") as outfile:
             json.dump(response_json, outfile, ensure_ascii=False)
@@ -116,12 +116,6 @@ async def echo(bot, update: Message):
                             "] ( " +
                             approx_file_size + " )",
                             callback_data=(cb_string_video).encode("UTF-8")
-                        ),
-                        InlineKeyboardButton(
-                            "DFile [" +
-                            "] ( " +
-                            approx_file_size + " )",
-                            callback_data=(cb_string_file).encode("UTF-8")
                         )
                     ]
                 inline_keyboard.append(ikeyboard)
