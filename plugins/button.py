@@ -29,7 +29,7 @@ async def youtube_dl_call_back(bot, update):
     # youtube_dl extractors
     tg_send_type, youtube_dl_format, youtube_dl_ext = cb_data.split("|")
     
-    save_ytdl_json_path = DOWNLOAD_LOCATION + \
+    save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + ".json"
     try:
         with open(save_ytdl_json_path, "r", encoding="utf8") as f:
@@ -57,7 +57,7 @@ async def youtube_dl_call_back(bot, update):
         description = response_json["fulltitle"][0:1021]
         # escape Markdown and special characters
     tmp_directory_for_each_user = os.path.join(
-        DOWNLOAD_LOCATION,
+        Config.DOWNLOAD_LOCATION,
         str(update.from_user.id)
     )
     if not os.path.isdir(tmp_directory_for_each_user):
@@ -71,7 +71,7 @@ async def youtube_dl_call_back(bot, update):
         command_to_exec = [
             "yt-dlp",
             "-c",
-            "--max-filesize", str(TG_MAX_FILE_SIZE),
+            "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--prefer-ffmpeg",
             "--extract-audio",
             "--audio-format", youtube_dl_ext,
@@ -86,7 +86,7 @@ async def youtube_dl_call_back(bot, update):
         command_to_exec = [
             "yt-dlp",
             "-c",
-            "--max-filesize", str(TG_MAX_FILE_SIZE),
+            "--max-filesize", str(Config.TG_MAX_FILE_SIZE),
             "--embed-subs",
             "-f", minus_f_format,
             "--hls-prefer-ffmpeg", youtube_dl_url,
@@ -94,7 +94,7 @@ async def youtube_dl_call_back(bot, update):
         ]
     if HTTP_PROXY is not None:
         command_to_exec.append("--proxy")
-        command_to_exec.append(HTTP_PROXY)
+        command_to_exec.append(Config.HTTP_PROXY)
     if youtube_dl_username is not None:
         command_to_exec.append("--username")
         command_to_exec.append(youtube_dl_username)
@@ -125,7 +125,7 @@ async def youtube_dl_call_back(bot, update):
         os.remove(save_ytdl_json_path)
         end_one = datetime.now()
         time_taken_for_download = (end_one - start).seconds
-        file_size = TG_MAX_FILE_SIZE + 1
+        file_size = Config.TG_MAX_FILE_SIZE + 1
         download_directory_dirname = os.path.dirname(download_directory)
         download_directory_contents = os.listdir(download_directory_dirname)
         for download_directory_c in download_directory_contents:
@@ -135,7 +135,7 @@ async def youtube_dl_call_back(bot, update):
             )
             file_size = os.stat(current_file_name).st_size
 
-            if file_size > TG_MAX_FILE_SIZE:
+            if file_size > Config.TG_MAX_FILE_SIZE:
                 await update.message.edit_caption(
                     caption=Translation.RCHD_TG_API_LIMIT.format(
                         time_taken_for_download,
