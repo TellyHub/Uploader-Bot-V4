@@ -28,7 +28,7 @@ async def youtube_dl_call_back(bot, update):
     tg_send_type, youtube_dl_format, youtube_dl_ext, ranom = cb_data.split("|")
     print(cb_data)
     random1 = random_char(5)
-    prog = Progress(update.from_user.id, c, update.message)
+    prog = Progress(update.from_user.id, bot, update.message)
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + f'{ranom}' + ".json"
     try:
