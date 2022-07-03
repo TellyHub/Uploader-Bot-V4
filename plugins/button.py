@@ -306,4 +306,15 @@ async def youtube_dl_call_back(bot, update):
                     caption=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download, time_taken_for_upload),
                     parse_mode=enums.ParseMode.HTML
 
+                
                 )
+                Config.ONE_BY_ONE.remove(update.from_user.id)
+                total_req_get = total_req
+                b_json["users"].pop(user_count - 1)
+                b_json["users"].append({
+                     "user_id": "{}".format(update.from_user.id),
+                     "total_req": "{}".format(int(total_req_get)),
+                     "exp_req": "{}".format(datetime.now())
+                })
+                with open("backup.json", "w", encoding="utf8") as outfile:
+                      json.dump(b_json, outfile, ensure_ascii=False)
