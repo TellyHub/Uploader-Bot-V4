@@ -17,7 +17,7 @@ from plugins.script import Translation
 from plugins.thumbnail import *
 from plugins.__init__ import *
 from pyrogram.types import InputMediaPhoto
-from plugins.functions.display_progress import progress_for_pyrogram, humanbytes
+from plugins.functions.display_progress import *
 from plugins.database.database import db
 from PIL import Image
 from plugins.functions.ran_text import random_char
@@ -28,7 +28,7 @@ async def youtube_dl_call_back(bot, update):
     tg_send_type, youtube_dl_format, youtube_dl_ext, ranom = cb_data.split("|")
     print(cb_data)
     random1 = random_char(5)
-    
+    prog = Progress(update.from_user.id, c, update.message)
     save_ytdl_json_path = Config.DOWNLOAD_LOCATION + \
         "/" + str(update.from_user.id) + f'{ranom}' + ".json"
     try:
@@ -81,6 +81,7 @@ async def youtube_dl_call_back(bot, update):
                 youtube_dl_url = youtube_dl_url[o:o + l]
     await update.message.edit_caption(
         caption=Translation.DOWNLOAD_START,
+        progress=prog.progress_for_pyrogram,
         parse_mode=enums.ParseMode.HTML
     )
     description = Translation.CUSTOM_CAPTION_UL_FILE
@@ -275,7 +276,7 @@ async def youtube_dl_call_back(bot, update):
                     caption=description,
                     parse_mode=enums.ParseMode.HTML,
                     #reply_to_message_id=update.id,
-                    progress=progress_for_pyrogram,
+                    progress=prog.progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
                         update.message,
@@ -296,7 +297,7 @@ async def youtube_dl_call_back(bot, update):
                     parse_mode=enums.ParseMode.HTML,
                     thumb=thumb_image_path,
                     #reply_to_message_id=update.id,
-                    progress=progress_for_pyrogram,
+                    progress=prog.progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
                         update.message,
@@ -314,7 +315,7 @@ async def youtube_dl_call_back(bot, update):
                     duration=duration,
                     thumb=thumbnail,
                     #reply_to_message_id=update.id,
-                    progress=progress_for_pyrogram,
+                    progress=prog.progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
                         update.message,
@@ -331,7 +332,7 @@ async def youtube_dl_call_back(bot, update):
                     length=width,
                     thumb=thumbnail,
                     #reply_to_message_id=update.id,
-                    progress=progress_for_pyrogram,
+                    progress=prog.progress_for_pyrogram,
                     progress_args=(
                         Translation.UPLOAD_START,
                         update.message,
