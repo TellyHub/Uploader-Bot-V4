@@ -6,16 +6,9 @@ import time
 import sys
 
 """Some Constants"""
-#UPLOAD_AS_DOC = {}  # Maintain each user ul_type
-#UPLOAD_TO_DRIVE = {}  # Maintain each user drive_choice
 
-FINISHED_PROGRESS_STR = os.environ.get("FINISHED_PROGRESS_STR", "█")
-UN_FINISHED_PROGRESS_STR = os.environ.get("UN_FINISHED_PROGRESS_STR", "░")
-EDIT_SLEEP_TIME_OUT = 10
 gDict = defaultdict(lambda: [])
-#queueDB = {}
-#formatDB = {}
-#replyDB = {}
+
 
 
 w = open('uploader-bot.txt','w')
@@ -25,7 +18,7 @@ logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(message)s [%(filename)s:%(lineno)d]",
     datefmt="%d-%b-%y %H:%M:%S",
     handlers=[
-        RotatingFileHandler("Merge-Bot.txt", maxBytes=50000000, backupCount=10),
+        RotatingFileHandler("uploader-bot.txt", maxBytes=50000000, backupCount=10),
         logging.StreamHandler(sys.stdout), #to get sys messages
     ],
 )
