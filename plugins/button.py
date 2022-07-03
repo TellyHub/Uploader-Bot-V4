@@ -92,7 +92,7 @@ async def youtube_dl_call_back(bot, update):
             "--hls-prefer-ffmpeg", youtube_dl_url,
             "-o", download_directory
         ]
-    if HTTP_PROXY is not None:
+    if Config.HTTP_PROXY is not None:
         command_to_exec.append("--proxy")
         command_to_exec.append(Config.HTTP_PROXY)
     if youtube_dl_username is not None:
