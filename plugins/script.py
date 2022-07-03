@@ -4,9 +4,21 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 class Translation(object):
 
 
-
+    IFLONG_FILE_NAME = """File Name limit allowed by Telegram is {alimit} characters.
+The given file name has {num} characters.
+<b>Essays Not allowed in Telegram file name!</b>
+©️ <code>@ReNameBot</code>
+Please short your file name and try again!"""
+    YTDL_ERROR_MESSAGE = (
+        "Please report this issue on https://yt-dl.org/bug . "
+        "Make sure you are using the latest version; see "
+        " https://yt-dl.org/update  on how to update. "
+        "Be sure to call youtube-dl with the --verbose flag "
+        "and include its complete output."
+    )
+    ISOAYD_PREMIUM_VIDEOS = "video is only available for registered users"
     TEXT = "sᴇɴᴅ ᴍᴇ ᴀɴʏ ᴄᴜsᴛᴏᴍ ᴛʜᴜᴍʙɴᴀɪʟ ᴛᴏ sᴇᴛ ɪᴛ"
-    IFLONG_FILE_NAME = " Only 64 characters can be named . "
+    #IFLONG_FILE_NAME = " Only 64 charac
     RENAME_403_ERR = "Sorry. You are not permitted to rename this file."
     ABS_TEXT = " Please don't be selfish."
     UPGRADE_TEXT = "<b>No preminum plans available in this bot </b>  /help for Details"
