@@ -189,24 +189,16 @@ async def youtube_dl_call_back(bot, update):
     # command_to_exec.append("--quiet")
     LOGGER.info(command_to_exec)
     start = datetime.now()
-    process = await asyncio.create_subprocess_exec(
-        *command_to_exec,
-        # stdout must a pipe to be accessible as process.stdout
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-    )
-    # Wait for the subprocess to finish
-    stdout, stderr = await process.communicate()
-    e_response = stderr.decode().strip()
-    t_response = stdout.decode().strip()
+    t_response, e_response = await run_shell_command(command_to_exec)
     LOGGER.info(e_response)
     LOGGER.info(t_response)
-    ad_string_to_replace = "please report this issue on https://yt-dl.org/bug . Make sure you are using the latest version; see  https://yt-dl.org/update  on how to update. Be sure to call youtube-dl with the --verbose flag and include its complete output."
-    if e_response and ad_string_to_replace in e_response:
-        error_message = e_response.replace(ad_string_to_replace, "")
+    if e_response and Translation.YTDL_ERROR_MESSAGE in e_response:
+        error_message = e_response.replace(
+            Translation.YTDL_ERROR_MESSAGE,
+            ""
+        )
         await update.message.edit_caption(
-            parse_mode=enums.ParseMode.HTML,
-            text=error_message
+            caption=error_message
         )
         Config.ONE_BY_ONE.remove(update.from_user.id)
         total_req_get = total_req
