@@ -170,12 +170,12 @@ async def echo(bot, update: Message):
             ])
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
 
-        await update.reply_photo(
-            photo=thumb_image_path,
+        await update.reply_text(
+            
            
             quote=True,
-            caption=Translation.FORMAT_SELECTION.format(
-                thumbnail
+            text=Translation.FORMAT_SELECTION.format(
+                Thumbnail
             ) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
@@ -191,17 +191,13 @@ async def echo(bot, update: Message):
             InlineKeyboardButton(
                 "SVideo",
                 callback_data=(cb_string_video).encode("UTF-8")
-            ),
-            InlineKeyboardButton(
-                "DFile",
-                callback_data=(cb_string_file).encode("UTF-8")
             )
         ])
         reply_markup = InlineKeyboardMarkup(inline_keyboard)
-        await update.reply_photo(
-            photo=DEF_THUMB_NAIL_VID_S,
+        await update.reply_text(
+            
             quote=True,
-            caption=Translation.FORMAT_SELECTION.format(""),
+            text=Translation.FORMAT_SELECTION.format(""),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML,
             reply_to_message_id=update.id
