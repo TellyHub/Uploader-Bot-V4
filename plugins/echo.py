@@ -45,7 +45,7 @@ async def echo(bot, update):
       fsub = await handle_force_subscribe(bot, update)
       if fsub == 400:
         return
-    logger.info(update.from_user)
+    LOGGER.info(update.from_user)
     url = update.text
     youtube_dl_username = None
     youtube_dl_password = None
