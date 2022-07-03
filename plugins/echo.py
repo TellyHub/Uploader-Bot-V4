@@ -1,18 +1,11 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | @Tellybots | @PlanetBots
 
-# the logging things
-import logging
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+from plugins.__init__ import *
 import requests, urllib.parse, filetype, os, time, shutil, tldextract, asyncio, json, math
 from PIL import Image
 from plugins.config import Config
 import time
 from plugins.script import Translation
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
+
 from pyrogram import filters
 from pyrogram import Client, enums
 from plugins.functions.forcesub import handle_force_subscribe
@@ -86,8 +79,8 @@ async def echo(bot, update):
             youtube_dl_username = youtube_dl_username.strip()
         if youtube_dl_password is not None:
             youtube_dl_password = youtube_dl_password.strip()
-        logger.info(url)
-        logger.info(file_name)
+        LOGGER.info(url)
+        LOGGER.info(file_name)
     else:
         for entity in update.entities:
             if entity.type == "text_link":
