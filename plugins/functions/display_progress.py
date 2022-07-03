@@ -4,8 +4,8 @@ import time
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.script import Translation
 from pyrogram import enums 
-
-
+import asyncio
+from typing import list
 
 
 async def progress_for_pyrogram(current, total, ud_type, message, start):
@@ -78,3 +78,18 @@ def humanbytes(size):
         size /= power
         n += 1
     return str(round(size, 2)) + " " + Dic_powerN[n] + "B"
+
+async def run_shell_command(command_to_exec: List) -> (str, str):
+    process = await asyncio.create_subprocess_exec(
+        *command_to_exec,
+        # stdout must a pipe to be accessible as process.stdout
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+    )
+    # Wait for the subprocess to finish
+    stdout, stderr = await process.communicate()
+    e_response = stderr.decode().strip()
+    # LOGGER.info(e_response)
+    t_response = stdout.decode().strip()
+    # LOGGER.info(t_response)
+    return t_response, e_response
