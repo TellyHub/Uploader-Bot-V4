@@ -128,6 +128,37 @@ async def echo(bot, update):
             reply_to_message_id=update.id,
             parse_mode=enums.ParseMode.HTML
           )
+    
+    t_response, e_response = await run_shell_command(command_to_exec)
+    # https://github.com/rg3/youtube-dl/issues/2630#issuecomment-38635239
+    if e_response and "nonnumeric port" not in e_response:
+        # logger.warn("Status : FAIL", exc.returncode, exc.output)
+        error_message = e_response.replace(
+            Translation.YTDL_ERROR_MESSAGE,
+            ""
+        )
+        if Translation.ISOAYD_PREMIUM_VIDEOS in error_message:
+            error_message += Translation.SET_CUSTOM_USERNAME_PASSWORD
+        await update.reply_text(
+            text=Translation.NO_VOID_FORMAT_FOUND.format(str(error_message)),
+            quote=True,
+            
+            disable_web_page_preview=True
+        )
+        return False
+    if t_response:
+        
+        x_reponse = t_response
+        if "\n" in x_reponse:
+            x_reponse, _ = x_reponse.split("\n")
+        response_json = json.loads(x_reponse)
+        randem = random_char(5)
+        save_ytdl_json_path = DOWNLOAD_LOCATION + \
+            "/" + f'{randem}' + str(update.from_user.id) + ".json"
+        with open(save_ytdl_json_path, "w", encoding="utf8") as outfile:
+            json.dump(response_json, outfile, ensure_ascii=False)
+        
+        
 
         inline_keyboard = []
         duration = None
