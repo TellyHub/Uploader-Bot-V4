@@ -3,7 +3,7 @@ import math
 import time
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from plugins.script import Translation
-from pyrogram import enums 
+from pyrogram import enums, Message 
 import asyncio
 from typing import List
 
