@@ -3,7 +3,7 @@ from plugins.config import Config
 
 from pyrogram import Client as sprbt
 from pyrogram import filters
-from plugins.__init__. import LOGGER 
+from plugins.__init__ import LOGGER 
 
 
 if __name__ == "__main__" :
