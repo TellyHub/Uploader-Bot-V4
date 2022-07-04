@@ -16,7 +16,7 @@ import subprocess
 import time
 
 # the secret configuration specific things
-from plugins.config import config
+from plugins.config import Config
 from pyrogram import Client, filters
 # the Strings used for this "thing"
 from translation import Translation
