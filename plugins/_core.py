@@ -229,7 +229,7 @@ def echo(bot, update):
                         InlineKeyboardButton(
                             "unknown video format", callback_data=cb_string.encode("UTF-8"))
                     ])
-                reply_markup = pyrogram.InlineKeyboardMarkup(inline_keyboard)
+                reply_markup = InlineKeyboardMarkup(inline_keyboard)
                 logger.info(reply_markup)
                 thumbnail = Config.DEF_THUMB_NAIL_VID_S
                 thumbnail_image = Config.DEF_THUMB_NAIL_VID_S
