@@ -169,9 +169,9 @@ def echo(bot, update):
             try:
                 if "hotstar.com" in url:
                     command_to_exec = [
-                        "youtube-dl", "--no-warnings", "-j", url, "--proxy", Config.HTTP_PROXY]
+                        "yt-dlp", "--no-warnings", "-j", url, "--proxy", Config.HTTP_PROXY]
                 else:
-                    command_to_exec = ["youtube-dl",
+                    command_to_exec = ["yt-dlp",
                                        "--no-warnings", "-j", url]
                 logger.info(command_to_exec)
                 t_response = subprocess.check_output(
@@ -418,7 +418,7 @@ def button(bot, update):
             str(update.from_user.id) + "_" + \
             youtube_dl_format + "." + youtube_dl_ext + ""
         command_to_exec = [
-            "youtube-dl",
+            "yt-dlp",
             "--extract-audio",
             "--audio-format", youtube_dl_ext,
             "--audio-quality", youtube_dl_format,
@@ -429,9 +429,9 @@ def button(bot, update):
         download_directory = Config.DOWNLOAD_LOCATION + "/" + \
             str(update.from_user.id) + "_" + \
             youtube_dl_format + "." + youtube_dl_ext
-        # command_to_exec = ["youtube-dl", "-f", youtube_dl_format, "--hls-prefer-ffmpeg", "--recode-video", "mp4", "-k", youtube_dl_url, "-o", download_directory]
+        # command_to_exec = ["youtube-dlp", "-f", youtube_dl_format, "--hls-prefer-ffmpeg", "--recode-video", "mp4", "-k", youtube_dl_url, "-o", download_directory]
         command_to_exec = [
-            "youtube-dl",
+            "yt-dlp",
             "--embed-subs",
             "-f", youtube_dl_format,
             "-k",
