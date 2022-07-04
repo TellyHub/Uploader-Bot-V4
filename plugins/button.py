@@ -129,9 +129,8 @@ async def youtube_dl_call_back(bot, update):
             "yt-dlp",
             "-c",
             
-            "--ignoreerrors": True,
-            "--nooverwrites": True,
-            "--continuedl": True,
+            "--ignoreerrors",
+            
             "--embed-metadata",
             "--merge-output-format",
             "--clean-info-json",
