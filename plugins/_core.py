@@ -17,7 +17,7 @@ import time
 
 # the secret configuration specific things
 from plugins.config import config
-
+from pyrogram import Client, filters
 # the Strings used for this "thing"
 from translation import Translation
 
@@ -90,7 +90,7 @@ def cult_small_video(video_file, output_directory, start_time, end_time):
     return out_put_file_name
 
 
-@Client.on_message(filters.text & pyrogram.Filters.private, group=1)
+@Client.on_message(filters.text & filters.private, group=1)
 def echo(bot, update):
     # logger.info(update)
 
