@@ -83,17 +83,32 @@ async def echo(bot, update: Message):
         duration = None
         if "duration" in response_json:
             duration = response_json["duration"]
-       
-        if "formats" in response_json:
-            for listed in response_json["formats"]:
-                format_id = listed.get("format_id")
-                format_string = listed.get("format_note")
-                if format_string is None:
-                    format_string = listed.get("format")
-                format_ext = listed.get("ext")
-                approx_file_size = ""
-                if "filesize" in formats:
-                    approx_file_size = humanbytes(formats["filesize"])
+           for listed in info.get("formats"):
+        if listed.get("acodec") == "none":
+            continue
+        media_type = "Audio" if "audio" in listed.get("format") else "Video"
+        
+        if "audio" in listed.get("format"):
+            first = str(listed.get("format_id")) + " - Audio"
+        else:
+            first = listed.get("format")
+        
+        #format_note = listed.get("format_note", "format")
+        format_note = listed.get("ext")
+        # SpEcHiDe/AnyDLBot/anydlbot/plugins/youtube_dl_echo.py#L112
+        
+        if listed.get("filesize"):
+            filesize = humanbytes(listed.get("filesize"))
+        elif listed.get("filesize_approx"):
+            filesize = humanbytes(listed.get("filesize_approx"))
+        else:
+            filesize = "null"
+        
+        acodec = listed.get("acodec")
+        av_codec = "empty"
+        if listed.get("acodec") == "none" or listed.get("vcodec") == "none":
+            av_codec = "none"
+
 
                 cb_string_video = "{}|{}|{}".format(
                     "video", format_id, format_ext)
