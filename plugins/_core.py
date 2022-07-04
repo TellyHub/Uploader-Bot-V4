@@ -24,8 +24,8 @@ from translation import Translation
 import pyrogram
 logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
-from plugins.helper_funcs.chat_base import TRChatBase
 
+from pyrogram.types import *
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
 # https://stackoverflow.com/a/37631799/4723940
