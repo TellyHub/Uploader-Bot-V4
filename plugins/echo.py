@@ -97,17 +97,17 @@ async def echo(bot, update: Message):
         format_note = listed.get("ext")
         # SpEcHiDe/AnyDLBot/anydlbot/plugins/youtube_dl_echo.py#L112
         
-        if listed.get("filesize"):
-            filesize = humanbytes(listed.get("filesize"))
-        elif listed.get("filesize_approx"):
-            filesize = humanbytes(listed.get("filesize_approx"))
-        else:
-            filesize = "null"
+            if listed.get("filesize"):
+                filesize = humanbytes(listed.get("filesize"))
+            elif listed.get("filesize_approx"):
+                filesize = humanbytes(listed.get("filesize_approx"))
+            else:
+               .filesize = "null"
         
-        acodec = listed.get("acodec")
-        av_codec = "empty"
-        if listed.get("acodec") == "none" or listed.get("vcodec") == "none":
-            av_codec = "none"
+            acodec = listed.get("acodec")
+            av_codec = "empty"
+            if listed.get("acodec") == "none" or listed.get("vcodec") == "none":
+                av_codec = "none"
 
 
                 cb_string_video = "{}|{}|{}".format(
