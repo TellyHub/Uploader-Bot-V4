@@ -128,10 +128,10 @@ async def youtube_dl_call_back(bot, update):
         command_to_exec = [
             "yt-dlp",
             "-c",
-            "postprocessors": [{"key": "FFmpegMetadata"}],
-            "ignoreerrors": True,
-            "nooverwrites": True,
-            "continuedl": True,
+            
+            "--ignoreerrors": True,
+            "--nooverwrites": True,
+            "--continuedl": True,
             "--embed-metadata",
             "--merge-output-format",
             "--clean-info-json",
