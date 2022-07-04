@@ -80,36 +80,4 @@ async def echo(bot, update: Message):
             json.dump(response_json, outfile, ensure_ascii=False)
         # logger.info(response_json)
         inline_keyboard = []
-    for listed in info.get("formats"):
-        if listed.get("acodec") == "none":
-            continue
-        media_type = "Audio" if "audio" in listed.get("format") else "Video"
-        
-        if "audio" in listed.get("format"):
-            first = str(listed.get("format_id")) + " - Audio"
-        else:
-            first = listed.get("format")
-        
-        #format_note = listed.get("format_note", "format")
-        format_note = listed.get("ext")
-        # SpEcHiDe/AnyDLBot/anydlbot/plugins/youtube_dl_echo.py#L112
-        
-        if listed.get("filesize"):
-            filesize = humanbytes(listed.get("filesize"))
-        elif listed.get("filesize_approx"):
-            filesize = humanbytes(listed.get("filesize_approx"))
-        else:
-            filesize = "null"
-        
-        acodec = listed.get("acodec")
-        av_codec = "empty"
-        if listed.get("acodec") == "none" or listed.get("vcodec") == "none":
-            av_codec = "none"
-        buttons.append(
-            [
-                InlineKeyboardButton(
-                    f"{first} [{format_note}] [{filesize}] {acodec}",
-                    callback_data=(cb_string_video).encode("UTF-8")
-             
-                 ]
-            )
+
