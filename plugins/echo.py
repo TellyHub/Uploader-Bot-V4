@@ -83,7 +83,7 @@ async def echo(bot, update: Message):
         duration = None
         if "duration" in response_json:
             duration = response_json["duration"]
-           for listed in info.get("formats"):
+            for listed in info.get("formats"):
         if listed.get("acodec") == "none":
             continue
         media_type = "Audio" if "audio" in listed.get("format") else "Video"
