@@ -102,12 +102,12 @@ async def echo(bot, update: Message):
                     inline_keyboard.append(ikeyboard)
             cb_string = "{}|{}|{}".format("audio", "5", "mp3")
             inline_keyboard.append([
-                pyrogram.InlineKeyboardButton(
+                pyrogram.types.InlineKeyboardButton(
                     "MP3 " + "(" + "medium" + ")", callback_data=cb_string.encode("UTF-8"))
             ])
             cb_string = "{}|{}|{}".format("audio", "0", "mp3")
             inline_keyboard.append([
-                pyrogram.InlineKeyboardButton(
+                pyrogram.types.InlineKeyboardButton(
                     "MP3 " + "(" + "best" + ")", callback_data=cb_string.encode("UTF-8"))
             ])
         else:
@@ -116,7 +116,7 @@ async def echo(bot, update: Message):
             cb_string = "{}|{}|{}".format(
                 "file", format_id, format_ext)
             inline_keyboard.append([
-                pyrogram.InlineKeyboardButton(
+                pyrogram.types.InlineKeyboardButton(
                     "unknown video format", callback_data=cb_string.encode("UTF-8"))
             ])
         reply_markup = pyrogram.InlineKeyboardMarkup(inline_keyboard)
