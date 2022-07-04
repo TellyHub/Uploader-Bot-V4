@@ -80,111 +80,51 @@ async def echo(bot, update: Message):
             json.dump(response_json, outfile, ensure_ascii=False)
         # logger.info(response_json)
         inline_keyboard = []
-        inline_keyboard = []
-        duration = None
-        if "duration" in response_json:
-            duration = response_json["duration"]
         if "formats" in response_json:
-            for listed in response_json["formats"]:
-                format_id = listed.get("format_id")
-                format_string = listed.get("format_note")
-                if format_string is None:
-                    format_string = listed.get("format")
-                format_ext = listed.get("ext")
+            for formats in response_json["formats"]:
+                format_id = formats["format_id"]
+                format_string = formats["format"]
+                format_ext = formats["ext"]
                 approx_file_size = ""
-                if "filesize" in listed:
-                    approx_file_size = humanbytes(listed["filesize"])
-                cb_string_video = "{}|{}|{}".format(
+                if "filesize" in formats:
+                    approx_file_size = humanbytes(formats["filesize"])
+                cb_string = "{}|{}|{}".format(
                     "video", format_id, format_ext)
-                cb_string_file = "{}|{}|{}".format(
-                    "file", format_id, format_ext)
-                if format_string and "audio only" not in format_string:
+                if not "audio only" in format_string:
                     ikeyboard = [
-                        InlineKeyboardButton(
-                            f"📹 {format_string}  {format_ext} {approx_file_size}",
-                            callback_data=(cb_string_video).encode("UTF-8")
+                        pyrogram.types.InlineKeyboardButton(
+                            "[" + format_string +
+                            "] (" + format_ext + " - " +
+                            approx_file_size + ")",
+                            callback_data=(cb_string).encode("UTF-8")
                         )
                     ]
-                else:
-                    # special weird case :\
-                    ikeyboard = [
-                        InlineKeyboardButton(
-                            "📹 [" +
-                            "] ( " +
-                            approx_file_size + " )",
-                            callback_data=(cb_string_video).encode("UTF-8")
-                        )
-                    ]
-                inline_keyboard.append(ikeyboard)
-            if duration is not None:
-                cb_string_64 = "{}|{}|{}".format("audio", "64k", "mp3")
-                cb_string_128 = "{}|{}|{}".format("audio", "128k", "mp3")
-                cb_string = "{}|{}|{}".format("audio", "320k", "mp3")
-                inline_keyboard.append([
-                    InlineKeyboardButton(
-                        "MP3 " + "(" + "64 kbps" + ")",
-                        callback_data=cb_string_64.encode("UTF-8")
-                    ),
-                    InlineKeyboardButton(
-                        "MP3 " + "(" + "128 kbps" + ")",
-                        callback_data=cb_string_128.encode("UTF-8")
-                    )
-                ])
-                inline_keyboard.append([
-                    InlineKeyboardButton(
-                        "MP3 " + "(" + "320 kbps" + ")",
-                        callback_data=cb_string.encode("UTF-8")
-                    )
-                ])
+                    inline_keyboard.append(ikeyboard)
+            cb_string = "{}|{}|{}".format("audio", "5", "mp3")
+            inline_keyboard.append([
+                pyrogram.InlineKeyboardButton(
+                    "MP3 " + "(" + "medium" + ")", callback_data=cb_string.encode("UTF-8"))
+            ])
+            cb_string = "{}|{}|{}".format("audio", "0", "mp3")
+            inline_keyboard.append([
+                pyrogram.InlineKeyboardButton(
+                    "MP3 " + "(" + "best" + ")", callback_data=cb_string.encode("UTF-8"))
+            ])
         else:
             format_id = response_json["format_id"]
             format_ext = response_json["ext"]
-            cb_string_file = "{}|{}|{}".format(
+            cb_string = "{}|{}|{}".format(
                 "file", format_id, format_ext)
-            cb_string_video = "{}|{}|{}".format(
-                "video", format_id, format_ext)
             inline_keyboard.append([
-                InlineKeyboardButton(
-                    "📹",
-                    callback_data=(cb_string_video).encode("UTF-8")
-                )
+                pyrogram.InlineKeyboardButton(
+                    "unknown video format", callback_data=cb_string.encode("UTF-8"))
             ])
-            cb_string_file = "{}={}={}".format(
-                "file", format_id, format_ext)
-            cb_string_video = "{}={}={}".format(
-                "video", format_id, format_ext)
-            inline_keyboard.append([
-                InlineKeyboardButton(
-                    "📹",
-                    callback_data=(cb_string_video).encode("UTF-8")
-                )
-            ])
-        reply_markup = InlineKeyboardMarkup(inline_keyboard)
+        reply_markup = pyrogram.InlineKeyboardMarkup(inline_keyboard)
+        LOGGER.info(reply_markup)
 
-        await update.reply_text(
-            
-           
-            quote=True,
-            text=Translation.FORMAT_SELECTION.format(
-                Thumbnail
-            ) + "\n" + Translation.SET_CUSTOM_USERNAME_PASSWORD,
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
-    else:
-        # fallback for nonnumeric port a.k.a seedbox.io
-        inline_keyboard = []
-        cb_string_file = "{}={}={}".format(
-            "file", "LFO", "NONE")
-        cb_string_video = "{}={}={}".format(
-            "video", "OFL", "ENON")
-        inline_keyboard.append([
-            InlineKeyboardButton(
-                "SVideo",
-                callback_data=(cb_string_video).encode("UTF-8")
-            )
-        ])
-        reply_markup = InlineKeyboardMarkup(inline_keyboard)
+        
+
+
         await update.reply_text(
             
             quote=True,
