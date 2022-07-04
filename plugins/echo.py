@@ -111,5 +111,5 @@ async def echo(bot, update: Message):
                     f"{first} [{format_note}] [{filesize}] {acodec}",
                     callback_data=(cb_string_video).encode("UTF-8")
              
-                 )
-            ]
+                 ]
+            )
